@@ -1,0 +1,112 @@
+Theatre
+
+Long id	//pk
+String name
+Address address
+List<Screen> screens
+
+Address
+
+Long pincode
+Double latitude
+Double Longitude
+String city
+
+Screen
+
+Long id		//pk
+String name
+List<Seat> seats
+List<Show> shows
+Theatre theatreId //fk
+
+Seat
+
+Long id		//pk
+SeatCategory seatCategory
+Long seatNumber
+Screen screenId //fk
+Double price;
+Boolean isBooked;
+
+Show
+
+Long id  //pk
+Date startTime
+Date endTime
+Movie movieId //fk
+Screen screenId //fk
+
+Movie
+
+Long id
+String name
+String description
+Long rating
+List<Cast> casts
+List<Genre> genre
+Long duration
+Language language
+Rating rate;
+
+Enum Language {ENGLISH,KANNADA,HINDI}
+
+Enum Genre {MYSTERY,THRILLER,DOCUMENTARY}
+
+Cast
+
+Long id //pk
+String name
+String movieRoleName
+Movie movieId	//fk
+
+Rating
+
+Long id  //pk
+Long userId   //fk
+RatingScale rate
+Movie movieId //fk
+
+Enum RatingScale {1,2,3,4,5}
+
+Enum SeatCategory {DELUX,PREMIUM,STANDARD}
+
+User
+
+Long id  //pk
+String name;
+Long mobileNumber
+String emailId
+
+Booking
+
+Long id //pk
+Long bookingId;
+Long userId //fk
+List<BookedSeats> bookedSeats
+Date createdTime
+Payment paymentId
+BookingStatus bookingStatus
+
+BookedSeats
+
+Long id //pk
+Long bookingId //fk
+Seat seat //fk
+
+Payment
+
+Long id //pk
+Long paymentId;
+PaymentType paymentType
+PaymentStatus paymentStatus;
+Long bookingId //fk
+Double amount;
+Tax
+Currency currency
+
+Enum PaymentStatus {IN_PROGRESS,COMPLETED,CANCELLED}
+
+Enum PaymentType {UPI,CASH,CREDIT,DEBIT}
+
+Enum BookingStatus{ IN_PROGRESS,COMPLETED,CANCELLED}
